@@ -1,7 +1,8 @@
 package com.example.openplayassigment.di
 
 import android.content.Context
-import com.example.openplayassigment.data.MovieRepository
+import com.example.openplayassigment.data.MovieApiService
+import com.example.openplayassigment.data.MovieRepositoryImpl
 import com.example.openplayassigment.data.local.AppDatabase
 import com.example.openplayassigment.data.local.MovieDao
 import com.example.openplayassigment.ui.movies.usecase.GetPopularMoviesUseCase
@@ -18,9 +19,9 @@ object AppModule {
 
     @Provides
     fun provideGetPopularMoviesUseCase(
-        movieRepository: MovieRepository
+        movieRepositoryImpl: MovieRepositoryImpl
     ): GetPopularMoviesUseCase {
-        return GetPopularMoviesUseCase(movieRepository)
+        return GetPopularMoviesUseCase(movieRepositoryImpl)
     }
 
     @Provides
@@ -32,5 +33,14 @@ object AppModule {
     @Provides
     fun provideMovieDao(database: AppDatabase): MovieDao {
         return database.movieDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMovieRepository(
+        apiService: MovieApiService,
+        movieDao: MovieDao
+    ): MovieRepositoryImpl {
+        return MovieRepositoryImpl(apiService, movieDao)
     }
 }

@@ -8,10 +8,3 @@ import javax.inject.Inject
 @HiltAndroidApp
 class MyApp : Application()
 
-class MovieRepository @Inject constructor(
-    private val apiService: MovieApiService
-) {
-
-}
-
-

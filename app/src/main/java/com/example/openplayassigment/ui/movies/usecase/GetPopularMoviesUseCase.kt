@@ -1,8 +1,8 @@
 package com.example.openplayassigment.ui.movies.usecase
 
 import com.example.openplayassigment.data.MovieRepository
+import com.example.openplayassigment.data.MovieRepositoryImpl
 import com.example.openplayassigment.data.local.MovieEntity
-import com.example.openplayassigment.utils.AppConstants
 import javax.inject.Inject
 
 class GetPopularMoviesUseCase @Inject constructor(private val repository: MovieRepository) {
